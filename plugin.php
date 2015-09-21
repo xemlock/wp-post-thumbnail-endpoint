@@ -7,8 +7,8 @@
  * Author:      xemlock <xemlock@gmail.com>
  * Author URI:  http://xemlock.github.io
  * Version:     1.0.0-dev
- * License:     GPLv2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * License:     MIT
+ * License URI: https://opensource.org/licenses/MIT
  *
  * This plugin provides a special URL dependent only on Post ID, that redirects
  * to the Post Thumbnail (aka Featured Image) corresponding to the provided ID.
