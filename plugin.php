@@ -121,14 +121,16 @@ abstract class WP_Unified_Post_Thumbnail_URL
      */
     public static function handle_post_thumbnail()
     {
-        $post_id = (int) get_query_var(self::VAR_POST_THUMBNAIL);
+        // default value can be provided to get_query_var() since 3.9.0
+        $post_id = get_query_var(self::VAR_POST_THUMBNAIL, null);
 
-        if (empty($post_id)) {
-            status_header(400);
-            exit;
+        if ($post_id === null) {
+            // query var required for triggering post thumbnail handler
+            // was not provided, nothing to do here...
+            return;
         }
 
-        $post = get_post($post_id);
+        $post = get_post((int) $post_id);
 
         if (empty($post)) {
             status_header(404);
