@@ -124,7 +124,15 @@ abstract class WP_Unified_Post_Thumbnail_URL
         $post_id = (int) get_query_var(self::VAR_POST_THUMBNAIL);
 
         if (empty($post_id)) {
-            return;
+            status_header(400);
+            exit;
+        }
+
+        $post = get_post($post_id);
+
+        if (empty($post)) {
+            status_header(404);
+            exit;
         }
 
         $size = get_query_var(self::VAR_SIZE);
@@ -136,6 +144,13 @@ abstract class WP_Unified_Post_Thumbnail_URL
         }
 
         $post_thumbnail_id = get_post_thumbnail_id($post_id);
+
+        // if post thumbnail cannot be determined, use the post itself as a thumbnail
+        // providing that it is an image attachment
+        if (empty($post_thumbnail_id) && $post->post_type === 'attachment') {
+            $post_thumbnail_id = $post->ID;
+        }
+
         $img = wp_get_attachment_image_src($post_thumbnail_id, $size);
 
         if ($img) {
