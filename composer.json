@@ -1,8 +1,7 @@
 {
     "name": "xemlock/wp-unified-post-thumbnail-url",
     "description": "A WordPress plugin that provides a special URL for accessing Post Thumbnails by their corresponding Post ID",
-    "license": "GPL-2.0",
-    "version": "1.0.0-dev",
+    "license": "MIT",
     "authors": [
         {
             "name": "xemlock",
