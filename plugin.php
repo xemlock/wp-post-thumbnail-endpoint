@@ -141,10 +141,10 @@ abstract class WP_Post_Thumbnail_Endpoint
 
         $size = get_query_var(self::VAR_SIZE);
 
-        // only registered thumbnail size names are recognized, i.e.
-        // built-in sizes and those added via add_image_size()
-        if (!in_array($size, get_intermediate_image_sizes(), true)) {
-            $size = null;
+        // handle 'thumb' alias for 'thumbnail' image size mentioned in
+        // https://codex.wordpress.org/Post_Thumbnails#Thumbnail_Sizes
+        if ($size === 'thumb') {
+            $size = 'thumbnail';
         }
 
         $post_thumbnail_id = get_post_thumbnail_id($post_id);
