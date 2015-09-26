@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Plugin Name: WP Unified Post Thumbnail URL
- * Plugin URI:  http://github.com/xemlock/wp-unified-post-thumbnail-url
+ * Plugin Name: WP Post Thumbnail Endpoint
+ * Plugin URI:  http://github.com/xemlock/wp-post-thumbnail-endpoint
  * Description:
  * Author:      xemlock <xemlock@gmail.com>
  * Author URI:  http://xemlock.github.io
@@ -10,23 +10,25 @@
  * License:     MIT
  * License URI: https://opensource.org/licenses/MIT
  *
- * This plugin provides a special URL dependent only on Post ID, that redirects
- * to the Post Thumbnail (aka Featured Image) corresponding to the provided ID.
+ * This plugin provides a special URL dependent only on Post ID (an endpoint),
+ * that redirects to the Post Thumbnail (aka Featured Image) corresponding to
+ * the provided ID.
+ *
  * This can particularly be useful when implementing client-side JavaScript
  * features that only have post ID and want to display Post Thumbnail without
  * sending additional AJAX request to retrieve the thumbnail's location.
  *
- * This plugin is intended for use by theme/plugin developers rather than end
- * users.
+ * This plugin is intended for use by theme/plugin developers rather than
+ * WordPress end-users.
  */
 
 defined('ABSPATH') || die();
 
-if (!defined('WP_UNIFIED_POST_THUMBNAIL_URL')) {
-    define('WP_UNIFIED_POST_THUMBNAIL_URL', __FILE__);
+if (!defined('WP_POST_THUMBNAIL_ENDPOINT')) {
+    define('WP_POST_THUMBNAIL_ENDPOINT', __FILE__);
 
 
-abstract class WP_Unified_Post_Thumbnail_URL
+abstract class WP_Post_Thumbnail_Endpoint
 {
     const POST_THUMBNAIL     = 'post_thumbnail';
 
@@ -165,11 +167,11 @@ abstract class WP_Unified_Post_Thumbnail_URL
     }
 
     /**
-     * Retrieve unified post thumbnail URL structure
+     * Retrieve post thumbnail endpoint structure
      *
      * @return string
      */
-    public static function get_url_structure()
+    public static function get_endpoint_structure()
     {
         global $wp_rewrite;
 
@@ -193,15 +195,15 @@ abstract class WP_Unified_Post_Thumbnail_URL
     }
 
     /**
-     * Retrieve unified post thumbnail URL for the given post ID
+     * Retrieve post thumbnail endpoint for the given post ID
      *
      * @param  int $post_id
      * @param  string $size OPTIONAL
      * @return string
      */
-    public static function get_url($post_id, $size = null)
+    public static function get_endpoint($post_id, $size = null)
     {
-        $url = strtr(self::get_url_structure(), array(
+        $url = strtr(self::get_endpoint_structure(), array(
             self::TAG_POST_ID => (int) $post_id,
             self::TAG_SIZE    => urlencode(trim($size)),
         ));
@@ -221,27 +223,27 @@ abstract class WP_Unified_Post_Thumbnail_URL
 }
 
 /**
- * Retrieve unified post thumbnail URL for the given post ID
+ * Retrieve post thumbnail endpoint for the given post ID
  *
  * @param  int $post_id
  * @param  string $size OPTIONAL
  * @return string
  */
-function get_unified_post_thumbnail_url($post_id, $size = null)
+function get_post_thumbnail_endpoint($post_id, $size = null)
 {
-    return WP_Unified_Post_Thumbnail_URL::get_url($post_id, $size);
+    return WP_Post_Thumbnail_Endpoint::get_endpoint($post_id, $size);
 }
 
 /**
- * Retrieve unified post thumbnail URL structure
+ * Retrieve post thumbnail endpoint structure
  *
  * @return string
  */
-function get_unified_post_thumbnail_url_structure()
+function get_post_thumbnail_endpoint_structure()
 {
-    return WP_Unified_Post_Thumbnail_URL::get_url_structure();
+    return WP_Post_Thumbnail_Endpoint::get_endpoint_structure();
 }
 
-WP_Unified_Post_Thumbnail_URL::init();
+WP_Post_Thumbnail_Endpoint::init();
 
-} // WP_UNIFIED_POST_THUMBNAIL_URL
+} // WP_POST_THUMBNAIL_ENDPOINT

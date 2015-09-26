@@ -1,6 +1,8 @@
-# WP Unified Post Thumbnail URL Plugin
+# WP Post Thumbnail Endpoint Plugin
 
-This WordPress plugin provides a special URL dependent only on Post ID that, when visited, redirects to the [Post Thumbnail](https://codex.wordpress.org/Post_Thumbnails) (aka Featured Image) corresponding to the provided ID. This can particularily be useful when implementing client-side JavaScript features (in a theme or plugin) that want to display Post Thumbnail based only on Post ID, without sending additional AJAX request to retrieve the thumbnail's location.
+This WordPress plugin provides a special URL dependent only on Post ID that, when visited, redirects to the [Post Thumbnail](https://codex.wordpress.org/Post_Thumbnails) (aka Featured Image) corresponding to the provided ID.
+
+This can particularily be useful when implementing client-side JavaScript features (in a theme or plugin) that want to display Post Thumbnail based only on Post ID, without sending additional AJAX request to retrieve the thumbnail's location.
 
 ## Installation
 
@@ -12,7 +14,7 @@ You can also directly include the main Plugin file  `plugin.php` in your own plu
 
 ### Post thumbnail URL
 
-After plugin installation post thumbnails are accessible via the following URL:
+Once the plugin has been installed, post thumbnails are accessible via the following URL:
 
     /index.php?post_thumbnail=POST_ID
 
@@ -34,11 +36,11 @@ The size provided in the URL must be one of the registered thumbnail size names,
 
 The Plugin provides two functions for building unified post thumbnail URLs:
 
-* `get_unified_post_thumbnail_url_structure()`
+* `get_post_thumbnail_endpoint_structure()`
 
     which returns the current structure for unified URLs, with `post_id` and `size` parameters given as `%post_id%` and `%size%` respectively. This can be used as an URL template on the client side.
 
-* `get_unified_post_thumbnail( $post_id [, $size ] )`
+* `get_post_thumbnail_endpoint( $post_id [, $size ] )`
 
     which returns the unified post thumbnail URL for the given post ID and optionally specified thumbnail size
 
