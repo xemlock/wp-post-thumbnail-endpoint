@@ -1,14 +1,14 @@
-# WP Post Thumbnail Endpoint Plugin
+# WP Post Thumbnail Endpoint
 
 This WordPress plugin provides a special URL dependent only on Post ID that, when visited, redirects to the [Post Thumbnail](https://codex.wordpress.org/Post_Thumbnails) (aka Featured Image) corresponding to the provided ID.
 
-This can particularily be useful when implementing client-side JavaScript features (in a theme or plugin) that want to display Post Thumbnail based only on Post ID, without sending additional AJAX request to retrieve the thumbnail's location.
+This can particularily be useful when implementing client-side JavaScript features (in a theme or plugin) that need to display Post Thumbnail based only on Post ID, without sending additional AJAX requests.
 
 ## Installation
 
-Place the Plugin directory to `wp-content/plugins` in your WordPress installation. Then go to [plugins administration screen](https://codex.wordpress.org/Administration_Screens#Plugins) and activate the Plugin.
+Place the Plugin directory inside `wp-content/plugins` in your WordPress installation. Then go to [plugins administration screen](https://codex.wordpress.org/Administration_Screens#Plugins) and activate the Plugin.
 
-You can also directly include the main Plugin file  `plugin.php` in your own plugin or theme. The Plugin will be active as long as the plugin or theme referencing it remains active.
+You can also directly include the main plugin file `plugin.php` in your own plugin or theme. This plugin will be active as long as the plugin or theme referencing it remains active.
 
 ## Usage
 
@@ -30,7 +30,7 @@ or by appending it to the pretty URL:
 
     /post_thumbnail/POST_ID/SIZE
 
-The size provided in the URL must be one of the registered thumbnail size names, i.e. built-in sizes (thumbnail, medium, large) or those added explicitly via `add_image_size()`. Unrecognized size names will be ignored, which will result in redirection to the original thumbnail image.
+The size provided in the URL must be one of the registered thumbnail size names, i.e. [built-in sizes](https://codex.wordpress.org/Post_Thumbnails#Thumbnail_Sizes) ("thumbnail", "medium", "large" and "full") or those added explicitly via `add_image_size()`. Unrecognized size names will be ignored, which will result in redirection to the original (unresized) image.
 
 ### Functions
 
