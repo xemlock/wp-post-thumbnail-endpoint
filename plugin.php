@@ -22,9 +22,7 @@
  * WordPress end-users.
  */
 
-defined('ABSPATH') || die();
-
-if (!defined('WP_POST_THUMBNAIL_ENDPOINT')) {
+if (defined('ABSPATH') && !defined('WP_POST_THUMBNAIL_ENDPOINT')) {
     define('WP_POST_THUMBNAIL_ENDPOINT', __FILE__);
 
 
